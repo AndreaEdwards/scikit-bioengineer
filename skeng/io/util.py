@@ -33,6 +33,27 @@ class FileHandlers:
 
 
 	def search_directory(self):
+		"""Search current working directory for files
+		
+		Useful for finding all files in the current directory of a particular type
+
+		Parameters
+    	----------
+		none
+
+		Returns
+		-------
+		list
+			List of strings. Each string is the root path to each file in the 
+			current working directory 
+
+    	Examples
+    	--------
+    	>>> file_handlers = FileHandlers()
+    	>>> file_paths = file_handlers.search_directory()
+    	>>> print file_paths
+	
+		"""
 		for root, self.directory, file_list in os.walk(self.directory):
 			for file_name in file_list:
 				path = root + os.sep + file_name
@@ -41,6 +62,29 @@ class FileHandlers:
 
 
 	def find_files(self, file_list, extension):
+		"""Find all files with a specified extension (.txt, .png, .py, etc)
+
+		Useful for getting particular files before parsing
+
+		Parameters
+		----------
+		file_list: list
+			List of strings to loop through. Each string corresponds to a file
+			path.
+		extension: string
+			String corresponding to the file extension to search for.
+
+		Returns
+		-------
+		list
+			List of strings. Each string is the root path to each file within
+			the current working directory that also contains the specified
+			file extension. 
+
+		Examples
+		--------
+		>>>
+		"""
 		self.new_file_list = []
 		for file_path in file_list:
 			new_list = file_path.split('.')
@@ -52,6 +96,24 @@ class FileHandlers:
 
 
 	def filter_files(self, file_list, character):
+		"""Filter a list of files by excluding all files that contain a
+		particular character.
+
+		Useful if you know that a certain file will never contain a particular
+		character on the first line. For example you may want to filter out
+		all .txt files in a list that do not contain \t character on the first 
+		line and keep all the .txt files that contain tab delimited format
+
+		Parameters
+		----------
+		file_list: list
+			List of strings. Each string is the root path to the files staged
+			for filtering
+		character: string
+			String form of character that will be searched for. i.e. if you
+			want to filter out all files that do not contain tab delimited
+			format, then character = '\t'
+		"""
 		for file in file_list:
 			for line in open(file):
 				if '\t' not in line:
@@ -63,7 +125,9 @@ class FileHandlers:
 
 
 	def clean(self, lines):
-		#cleaned = []
+		"""Clean strings in a list
+		"""
+
 		for field in lines:
 			self.cleaned.append(field.strip()) 
 		return(self.cleaned)
