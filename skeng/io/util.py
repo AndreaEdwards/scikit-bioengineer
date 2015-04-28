@@ -20,9 +20,6 @@ class FileHandlers
 	
 """
 
-import os
-
-
 class FileHandlers:
 	def __init__(self):
 		self.directory = os.getcwd()
@@ -83,7 +80,10 @@ class FileHandlers:
 
 		Examples
 		--------
-		>>>
+		>>> file_handlers = FileHandlers()
+    	>>> file_paths = file_handlers.search_directory()
+    	>>> fasta_files = file_handlers.find_files(file_paths, 'fasta')
+    	>>> print fasta_files
 		"""
 		self.new_file_list = []
 		for file_path in file_list:
@@ -113,6 +113,20 @@ class FileHandlers:
 			String form of character that will be searched for. i.e. if you
 			want to filter out all files that do not contain tab delimited
 			format, then character = '\t'
+
+		Returns
+		-------
+		list
+			List of strings. Each string is the root path to each file within
+			the current working directory that does not contain the specified
+			character. 
+
+		Examples
+		--------
+		>>> file_handlers = FileHandlers()
+		>>> file_paths = file_handlers.search_directory()
+		>>> txt_files = file_handlers.find_files(file_paths, 'txt')
+		>>> files_to_annotate = file_handlers.filter_files(txt_files, '\t')
 		"""
 		for file in file_list:
 			for line in open(file):
