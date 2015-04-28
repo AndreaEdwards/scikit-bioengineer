@@ -33,10 +33,11 @@ class FileHandlers:
 	def search_directory(self):
 		"""Search current working directory for files
 		
-		Useful for finding all files in the current directory of a particular type
+		Useful for finding all files in the current directory of a particular 
+		type
 
 		Parameters
-    	----------
+		----------
 		none
 
 		Returns
