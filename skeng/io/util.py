@@ -19,6 +19,7 @@ class FileHandlers
 		build_dict]
 	
 """
+import os
 
 class FileHandlers:
 	def __init__(self):
@@ -138,10 +139,34 @@ class FileHandlers:
 		return self.filtered_list
 
 
-	def clean(self, lines):
-		"""Clean strings in a list
-		"""
+	def clean(self, values):
+		"""Removes whitespace (including \n) from front and back of items in a 
+		list.
 
-		for field in lines:
-			self.cleaned.append(field.strip()) 
+		Useful for parsing csv files
+
+		Parameters
+		----------
+		values: list
+			List of strings that need to be cleaned of whitespace on front and
+			back
+
+		Returns
+		-------
+		list
+			List of strings with no whitespace at beginning or end of string.
+			Will not contain \n characters at beginning or end of string.
+
+		Examples
+		--------
+		>>> test_file = '/path/to/test.csv'
+		>>> for line in open(test_file):
+		... 	file_handlers = FileHandlers()
+		... 	fields = line.split(",")
+		... 	print fields
+		... 	cleaned = file_handlers.clean(fields)
+		... 	print cleaned
+		"""
+		for field in values:
+			self.cleaned.append(field.strip())  # strip() takes out white space from front and back of line
 		return(self.cleaned)
