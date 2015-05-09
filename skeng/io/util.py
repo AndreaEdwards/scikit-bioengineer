@@ -96,6 +96,33 @@ class FileHandlers:
 				pass
 		return self.new_file_list
 
+	def get_file_name(file_path):
+		"""Retrieve the file name from a sting corresponding to the file path
+
+		Useful for printing out file names
+
+		Parameters
+		----------
+		file_path: string
+			String corresponds to a file
+
+		Returns
+		-------
+		string
+			String corresponds to region of the input string following the 
+			last backslash character 
+
+		Examples
+		--------
+		>>> file_handlers = FileHandlers()
+    	>>> file_paths = file_handlers.search_directory()
+    	>>> fasta_files = file_handlers.find_files(file_paths, 'fasta')
+    	>>> for i in range(len(fasta_files)):
+    	...    print get_file_name(fasta_files[i])
+		"""
+		path_as_list = file_path.split('/')
+		return path_as_list[-1]
+
 
 	def filter_files(self, file_list, character):
 		"""Filter a list of files by excluding all files that contain a
