@@ -90,7 +90,7 @@ class FileHandlers:
 		self.new_file_list = []
 		for file_path in file_list:
 			new_list = file_path.split('.')
-			if new_list[1] == extension:
+			if new_list[-1] == extension:
 				self.new_file_list.append(file_path)
 			else:
 				pass
